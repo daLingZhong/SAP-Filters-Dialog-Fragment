@@ -1,0 +1,14 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="webapp.controller.Page"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{CompanyName}" showNavButton="true" navButtonPress="onNavPress">
+				<content>
+				  	<ObjectHeader title="{CompanyName}" number="ID: {SupplierID}">
+						<ObjectAttribute text="{Address}, {City}"/>
+					</ObjectHeader>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

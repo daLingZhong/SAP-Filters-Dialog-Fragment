@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+        <script src="../resources/sap-ui-core.js" id="sap-ui-bootstrap" data-sap-ui-libs="sap.m" data-sap-ui-xx-bindingsyntax="complex" data-sap-ui-resourceroots="{&quot;webapp&quot;: &quot;./&quot;}" data-sap-ui-theme="sap_bluecrystal">
+        </script>
+	
+<script>
+var bRunWithMock = true;
+var sRunWithMock = jQuery.sap.getUriParameters().get('run-with-mock');
+if (sRunWithMock === 'false') {
+bRunWithMock = false;
+}
+if (bRunWithMock) {
+jQuery.sap.require('sap.ui.core.util.MockServer');
+var uri = 'localService/metadata.xml/';
+var oMock = new sap.ui.core.util.MockServer({rootUri : uri});
+var _sAppModulePath = "webapp/";
+var sMetadataPath = "localService/metadata.xml";
+var sMetadataUrl = jQuery.sap.getModulePath(_sAppModulePath + sMetadataPath.replace(".xml", ""), ".xml");
+var sMockdataBaseUrlPath = sMetadataUrl.replace(/[^/]+$/, 'mockdata');
+oMock.simulate(sMetadataUrl, { sMockdataBaseUrl : sMockdataBaseUrlPath, bGenerateMissingMockData : true });
+oMock.start();
+	jQuery(document).ready(function($) {  sap.m.MessageToast.show('Running in demo mode with mock data.', {  duration : 4000 });
+});
+}
+</script>
+
+
+
+        <script>
+
+            // var oApp = new sap.m.App({
+            //     pages: [sap.ui.xmlview("appView", "webapp.view.Table")]
+            // });
+            // oApp.placeAt("content");            
+			sap.ui.getCore().attachInit(function() {
+				new sap.m.Shell({
+					app: new sap.ui.core.ComponentContainer({
+						height : "100%",
+						name : "webapp"
+					})
+				}).placeAt("content");
+			});
+        </script>
+
+    </head>
+    <body class="sapUiBody" role="application">
+        <div id="content"></div>
+    </body>
+</html>
