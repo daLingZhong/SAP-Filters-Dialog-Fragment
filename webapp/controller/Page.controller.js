@@ -15,7 +15,7 @@ sap.ui.define([
 				var oRouter = UIComponent.getRouterFor(this);
 				oRouter.getRoute("Page").attachPatternMatched(this._onObjectMatched, this);	
 				                // Application model
-                var sServiceUrl = "https://cors-anywhere.herokuapp.com/"
+                var sServiceUrl = "https://cors-anywhere.herokuapp.com/"//代理服务器，需要遵循了Same-origin 策略
                     + "http://services.odata.org/V3/Northwind/Northwind.svc/";
                     //从odata官方提供的API中获取到数据，服务器名为northwind
                 var oModel = new ODataModel(sServiceUrl);

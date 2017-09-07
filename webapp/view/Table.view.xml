@@ -6,11 +6,13 @@
 
     <Page title="排序，分组和筛选">
         <content>
+        	
             <Table items="{/Suppliers}" id="idTable" inset="true">
                 <headerToolbar>
                     <Toolbar>
                         <Title level="H2" text="供应商清单" />
-                        <ToolbarSpacer />                       
+                        <ToolbarSpacer /> 
+                    	<SearchField width="50%" search="onFilterCompany" />
                         <Button press="onTableSettings" 
                                 icon="sap-icon://drop-down-list" />
                     </Toolbar>

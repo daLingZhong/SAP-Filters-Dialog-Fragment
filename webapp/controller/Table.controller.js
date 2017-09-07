@@ -3,11 +3,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Sorter",
     "sap/ui/model/Filter",
-    "sap/ui/core/UIComponent",
-    'sap/m/MessageToast'
+    "sap/ui/core/UIComponent"
     ],
 
-    function (Controller, ODataModel, JSONModel, Sorter, Filter, UIComponent,MessageToast) {
+    function (Controller, ODataModel, JSONModel, Sorter, Filter, UIComponent) {
         "use strict";
 
         return Controller.extend("webapp.controller.Table", {
@@ -49,7 +48,23 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				//声明路径
                 oDialog.open();
             },
+            
+			onFilterCompany:function(oEvent) {
+                var sQueryVal = oEvent.getParameter("query");//获取查询的值               
+                var aFilters = [];
 
+                if (sQueryVal){
+                    var oProductFilter = new sap.ui.model.Filter(
+                            "CompanyName",
+                            sap.ui.model.FilterOperator.Contains,
+                            sQueryVal);
+                    aFilters.push(oProductFilter);
+                }
+                
+                var oBinding = this.getView().byId("idTable").getBinding("items");
+                oBinding.filter(aFilters);	
+			},
+			
             onConfirm: function (oEvent) {//fragment中的方法
                 var oBinding = this.getView().byId("idTable").getBinding("items");//获取需要排序的整个table的列表items绑定值
                 var mParams = oEvent.getParameters();//获取点击事件中的值，用if判断点击按钮所提供的类型
